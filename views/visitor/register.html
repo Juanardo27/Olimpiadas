@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Viajes Juares</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="icon" href="/img/logoPag.png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo">
+            <img src="/img/logoPag.png" alt="Logo" width="50">
+            <h2>Viajes Juares</h2>
+            </div>
+            <nav id="menuPrincipal"></nav>
+        </div>
+    </header>
+  <main class="formulario-container">
+    <form id="formRegistro">
+    <h2>Registrate</h2>
+        <label>Nombre</label>
+        <input type="text" name="nombre" required>
+        
+        <label>Apellido</label>
+        <input type="text" name="apellido" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Contraseña</label>
+        <input type="password" name="contraseña" required>
+
+        <button type="submit">Crear cuenta</button>
+    </form>
+
+    <p>¿Ya tenés cuenta? <a href="/login">Ingresá</a></p>
+  </main>
+
+  <footer class="footer">
+  <p>
+    © 2025 Viajes Juares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
+    Tu aventura comienza con nosotros.
+  </p>
+  <br>
+  <div>
+    <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
+    <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
+  </div>
+</footer>
+
+
+  <script src="/js/shared/menu.js"></script>
+  <script src="/js/visitor/register.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Viajes Juares</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="icon" href="/img/logoPag.png">
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="logo">
+        <img src="/img/logoPag.png" alt="Logo" width="50">
+        <h2>Viajes Juares</h2>
+      </div>
+      <nav id="menuPrincipal"></nav>
+    </div>
+  </header>
+
+  <main class="formulario-container">
+    <h2 style="text-align: center; padding-top: 15px;">Atención al cliente</h2>
+
+    <form id="formContacto">
+      <input type="text" id="asunto" placeholder="Asunto" required />
+      <textarea id="mensaje" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+
+
+    <p id="estadoEnvio"></p>
+  </main>
+
+  <footer class="footer">
+  <p>
+    © 2025 Viajes Chuares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
+    Tu aventura comienza con nosotros.
+  </p>
+  <br>
+  <div>
+    <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
+    <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
+  </div>
+</footer>
+
+  <script src="/js/shared/menu.js"></script>
+  <script src="/js/client/contacto.js"></script>
+  <script src="/js/shared/proteger.js"></script>
+</body>
+</html>

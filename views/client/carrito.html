@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carrito - Viajes Juares</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="icon" href="/img/logoPag.png">
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="logo">
+        <img src="/img/logoPag.png" alt="Logo" width="50">
+        <h2>Viajes Juares</h2>
+      </div>
+      <nav id="menuPrincipal"></nav>
+    </div>
+  </header>
+
+  <main>
+    <h2 style="text-align: center; padding-top: 15px;">Carrito</h2>
+
+    <table id="tablaCarrito" class="tabla-gestion">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <p><strong>Total:</strong> <span id="totalCarrito">$0</span></p>
+
+    <h3>Método de pago</h3>
+    <select id="metodoPago">
+      <option value="Tarjeta">Tarjeta</option>
+      <option value="Efectivo">Efectivo</option>
+      <option value="Transferencia">Transferencia</option>
+    </select>
+
+    <div style="margin-top: 15px;">
+      <button id="finalizar">🛍️ Finalizar compra</button>
+      <button id="cancelar" style="margin-left: 10px;">❌ Cancelar pedido</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <p>
+    © 2025 Viajes Chuares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
+    Tu aventura comienza con nosotros.
+  </p>
+  <br>
+  <div>
+    <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
+    <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
+  </div>
+</footer>
+
+  <!-- Scripts -->
+  <script src="/js/shared/menu.js"></script>
+  <script src="/js/shared/proteger.js"></script>
+  <script src="/js/client/carrito.js"></script>
+</body>
+</html>

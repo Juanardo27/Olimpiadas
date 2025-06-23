@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de Productos - Viajes Juares</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="icon" href="/img/logoPag.png">
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="logo">
+        <img src="/img/logoPag.png" alt="Logo" width="50">
+        <h2>Viajes Juares</h2>
+      </div>
+      <nav id="menuPrincipal"></nav>
+    </div>
+  </header>
+
+  <main>
+    <h2 style="text-align:center; padding-top: 15px;">Gestión de Productos</h2>
+
+    <section class="formulario-container">
+      <form id="formProducto">
+        <input type="hidden" name="id_producto" />
+
+        <label>Código del producto:</label>
+        <input type="text" name="codigo_producto" required>
+
+        <label>Descripción</label>
+        <input type="text" name="descripcion" required />
+
+        <label>Precio</label>
+        <input type="number" name="precio" required />
+
+        <label>Stock</label>
+        <input type="number" name="stock" required />
+
+        <label>Categoría</label>
+        <select name="id_categoria" required>
+          <option value="">Seleccionar</option>
+          <option value="1">Paquete</option>
+          <option value="2">Vuelo</option>
+          <option value="3">Hotel</option>
+        </select>
+
+        <div id="botones-form">
+          <button type="submit" id="btnGuardar">Agregar Producto</button>
+          <button type="button" id="btnCancelar" style="display: none;">Cancelar edición</button>
+        </div>
+
+      </form>
+
+    </section>
+
+    <section style="margin-top: 2rem;">
+<table id="tablaProductos" class="tabla-gestion">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Categoría</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+    </section>
+  </main>
+
+ <footer class="footer">
+  <p>
+    © 2025 Viajes Juares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
+    Tu aventura comienza con nosotros.
+  </p>
+  <br>
+  <div>
+    <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
+    <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
+  </div>
+</footer>
+
+
+  <script src="/js/shared/menu.js"></script>
+  <script src="/js/shared/proteger.js"></script>
+  <script src="/js/sales/productos.js"></script>
+</body>
+</html>
