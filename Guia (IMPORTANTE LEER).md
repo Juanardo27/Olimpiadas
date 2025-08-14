@@ -1,4 +1,4 @@
-﻿# Olimpiadas
+﻿# Proyecto Olimpiadas
 
 ## Estructura del Proyecto
 
@@ -142,4 +142,5 @@
 
 - **/Base de Datos/**  
   Carpeta que contiene el archivo `.sql` para importar la base de datos.
+
 
