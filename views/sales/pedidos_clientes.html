@@ -8,17 +8,19 @@
   <link rel="icon" href="/img/logoPag.png">
 </head>
 <body>
+    <!-- Encabezado con logo y menú principal -->
     <header class="header">
         <div class="header-top">
             <div class="logo">
-            <img src="/img/logoPag.png" alt="Logo" width="50">
-            <h2>Viajes Juares</h2>
+                <img src="/img/logoPag.png" alt="Logo" width="50">
+                <h2>Viajes Juares</h2>
             </div>
             <nav id="menuPrincipal"></nav>
         </div>
     </header>
 <main>
   <h2 style="text-align: center; padding-top: 15px;">📦 Pedidos de Clientes</h2>
+  <!-- Tabla para mostrar los pedidos de los clientes -->
   <table id="tablaPedidos" class="tabla-gestion">
     <thead>
       <tr>
@@ -33,6 +35,7 @@
     <tbody></tbody>
   </table>
 
+  <!-- Modal para mostrar el detalle de un pedido -->
   <dialog id="modalDetalle">
     <h3>Detalle del Pedido</h3>
     <table>
@@ -50,6 +53,7 @@
   </dialog>
 </main>
 
+<!-- Pie de página con información y redes sociales -->
 <footer class="footer">
   <p>
     © 2025 Viajes Juares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
@@ -62,10 +66,10 @@
   </div>
 </footer>
 
-
-  <script src="/js/shared/menu.js"></script>
-  <script src="/js/sales/pedidos_clientes.js"></script>
-  <script src="/js/shared/proteger.js"></script>
+<!-- Scripts para menú, lógica de pedidos y protección de rutas -->
+<script src="/js/shared/menu.js"></script>
+<script src="/js/sales/pedidos_clientes.js"></script>
+<script src="/js/shared/proteger.js"></script>
 
 </body>
 </html>

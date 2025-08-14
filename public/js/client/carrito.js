@@ -1,10 +1,17 @@
+// public/js/client/carrito.js
+// Maneja la lógica del carrito del cliente: carga productos, modifica cantidades y finaliza/cancela pedido
+
 (async () => {
+  // Obtiene usuario logueado desde localStorage
   const user = JSON.parse(localStorage.getItem('usuario'));
+
+  // Verifica que el usuario sea cliente, si no, redirige al login
   if (!user || user.tipo_usuario !== 'cliente') {
     alert('Ingresá como cliente.');
     return window.location = '/login';
   }
 
+  // Referencias a elementos del DOM
   const tabla = document.querySelector('#tablaCarrito tbody');
   const totalElem = document.getElementById('totalCarrito');
   const metodoPago = document.getElementById('metodoPago');
@@ -13,7 +20,7 @@
 
   let total = 0;
 
-  // ✅ Función para cargar los productos del carrito
+  // Cargar productos del carrito desde API
   async function cargarCarrito() {
     try {
       const res = await fetch(`/api/pedidos/clientes/${user.id_cliente}`);
@@ -22,6 +29,7 @@
       tabla.innerHTML = '';
       total = 0;
 
+      // Si no hay productos, muestra mensaje y deshabilita botones
       if (!productos.length) {
         tabla.innerHTML = `<tr><td colspan="5">🛒 Tu carrito está vacío.</td></tr>`;
         finalizarBtn.disabled = true;
@@ -30,6 +38,7 @@
         return;
       }
 
+      // Habilita botones y genera filas para cada producto
       finalizarBtn.disabled = false;
       cancelarBtn.disabled = false;
 
@@ -60,10 +69,10 @@
     }
   }
 
-  // ✅ Llamada inicial
+  // Llamada inicial para mostrar carrito al cargar la página
   await cargarCarrito();
 
-  // ✅ Finalizar compra
+  // Finalizar compra: envía PATCH a la API con el método de pago
   finalizarBtn.onclick = async () => {
     const metodo = metodoPago.value;
     if (!metodo) return alert('Seleccioná un método de pago.');
@@ -91,7 +100,7 @@
     }
   };
 
-  // ✅ Cancelar pedido
+  // Cancelar pedido completo
   cancelarBtn.onclick = async () => {
     const confirmar = confirm('¿Cancelar el pedido completo?');
     if (!confirmar) return;
@@ -112,8 +121,7 @@
     }
   };
 
-  // ✅ Definir funciones globales para que funcionen desde HTML
-
+  // Función para modificar cantidad desde el input en la tabla
   window.modificarCantidad = async (id_detalle, precio, nuevaCantidad) => {
     nuevaCantidad = parseInt(nuevaCantidad);
     if (nuevaCantidad < 1) return alert('Cantidad inválida');
@@ -139,6 +147,7 @@
     }
   };
 
+  // Eliminar un producto del carrito
   window.eliminarProducto = async (id_detalle) => {
     const confirmar = confirm('¿Eliminar este producto del carrito?');
     if (!confirmar) return;

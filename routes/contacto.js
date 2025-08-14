@@ -6,6 +6,7 @@ const enviarCorreo = require('../utils/mailer');
 r.post('/', (req, res) => {
   const { asunto, mensaje } = req.body;
 
+  // Valida que no falten campos obligatorios
   if (!asunto || !mensaje) return res.status(400).send('Faltan campos');
 
   // Buscar email del sector de atención al cliente desde la base de datos
@@ -19,7 +20,7 @@ r.post('/', (req, res) => {
 
     const emailDestino = resultado[0].email_sector;
 
-    // Enviar el correo
+    // Enviar el correo usando la utilidad de mailer
     enviarCorreo({
       para: emailDestino,
       asunto: `📩 Contacto: ${asunto}`,

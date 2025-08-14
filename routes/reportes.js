@@ -108,6 +108,7 @@ r.get('/ventas/por-cliente/:id_jefe', (req, res) => {
     res.json(result);
   });
 });
+
 // 📊 Reporte general de ventas entregadas (para todos los jefes)
 r.get('/ventas/entregadas', (req, res) => {
   db.query(`

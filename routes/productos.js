@@ -12,6 +12,7 @@ r.get('/', (req, res) => {
 r.post('/', (req, res) => {
   const { codigo_producto, descripcion, precio, stock, id_categoria, modificado_por } = req.body;
 
+  // Valida datos obligatorios
   if (!codigo_producto || !descripcion || !precio || !stock || !id_categoria || !modificado_por) {
     return res.status(400).send('Faltan datos obligatorios');
   }
@@ -30,6 +31,7 @@ r.put('/:id', (req, res) => {
   const { id } = req.params;
   const { codigo_producto, descripcion, precio, stock, id_categoria, modificado_por } = req.body;
 
+  // Valida datos obligatorios
   if (!codigo_producto || !descripcion || !precio || !stock || !id_categoria || !modificado_por) {
     return res.status(400).send('Faltan datos obligatorios');
   }

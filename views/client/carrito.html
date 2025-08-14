@@ -7,6 +7,7 @@
   <link rel="icon" href="/img/logoPag.png">
 </head>
 <body>
+  <!-- Encabezado con logo y menú principal -->
   <header class="header">
     <div class="header-top">
       <div class="logo">
@@ -20,6 +21,7 @@
   <main>
     <h2 style="text-align: center; padding-top: 15px;">Carrito</h2>
 
+    <!-- Tabla para mostrar los productos agregados al carrito -->
     <table id="tablaCarrito" class="tabla-gestion">
       <thead>
         <tr>
@@ -33,8 +35,10 @@
       <tbody></tbody>
     </table>
 
+    <!-- Muestra el total del carrito -->
     <p><strong>Total:</strong> <span id="totalCarrito">$0</span></p>
 
+    <!-- Selección del método de pago -->
     <h3>Método de pago</h3>
     <select id="metodoPago">
       <option value="Tarjeta">Tarjeta</option>
@@ -42,28 +46,29 @@
       <option value="Transferencia">Transferencia</option>
     </select>
 
+    <!-- Botones para finalizar o cancelar la compra -->
     <div style="margin-top: 15px;">
       <button id="finalizar">🛍️ Finalizar compra</button>
       <button id="cancelar" style="margin-left: 10px;">❌ Cancelar pedido</button>
     </div>
   </main>
 
+  <!-- Pie de página con información y redes sociales -->
   <footer class="footer">
-  <p>
-    © 2025 Viajes Chuares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
-    Tu aventura comienza con nosotros.
-  </p>
-  <br>
-  <div>
-    <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
-    <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
-  </div>
-</footer>
+    <p>
+      © 2025 Viajes Chuares · Descubrí destinos increíbles, viví nuevas experiencias y creá recuerdos que durarán toda la vida. 
+      Tu aventura comienza con nosotros.
+    </p>
+    <br>
+    <div>
+      <a href="#" target="_blank"><img src="/img/logoIg.png" alt="Instagram" style="width: 2.5%; padding: 5px;"></a>
+      <a href="#"><img src="/img/logoFacebook.png" alt="Facebook" style="width: 2.5%; padding: 5px;"></a>
+    </div>
+  </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts para menú, protección de rutas y lógica del carrito -->
   <script src="/js/shared/menu.js"></script>
   <script src="/js/shared/proteger.js"></script>
   <script src="/js/client/carrito.js"></script>
 </body>
 </html>
-

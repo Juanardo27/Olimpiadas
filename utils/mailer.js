@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 
+// Configura el transporte de correo usando variables de entorno
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
   port: parseInt(process.env.MAIL_PORT),
@@ -10,6 +11,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Función utilitaria para enviar correos electrónicos
 const enviarCorreo = async ({ para, asunto, mensaje }) => {
   await transporter.sendMail({
     from: `"Viajes Chuares" <${process.env.MAIL_USER}>`,

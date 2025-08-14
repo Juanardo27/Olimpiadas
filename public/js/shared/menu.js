@@ -1,11 +1,14 @@
+// Espera a que el DOM esté cargado para inicializar el menú
 document.addEventListener('DOMContentLoaded', () => {
   (async () => {
+    // Obtiene el usuario logueado desde localStorage
     const user = JSON.parse(localStorage.getItem('usuario'));
     const nav = document.getElementById('menuPrincipal');
     if (!nav) return;
 
     let menu = [];
 
+    // Define el menú según el tipo de usuario
     if (!user) {
       // 🔹 Visitante
       menu = [
@@ -39,12 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const ul = document.createElement('ul');
     ul.classList.add('menu');
 
+    // Crea los elementos del menú según la configuración
     menu.forEach(item => {
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.textContent = item.text;
       a.href = item.href;
 
+      // Si el ítem tiene acción (ej: cerrar sesión), la agrega
       if (item.action) {
         a.addEventListener('click', e => {
           e.preventDefault();

@@ -7,6 +7,7 @@ r.post('/', (req, res) => {
   const { clienteId, productoId, cantidad, subtotal } = req.body;
   const fecha = new Date().toISOString().split('T')[0];
 
+  // Valida datos obligatorios
   if (!clienteId || !productoId || !cantidad) return res.status(400).send('Faltan datos');
 
   // Verificamos el stock disponible
@@ -16,9 +17,11 @@ r.post('/', (req, res) => {
 
     if (stockActual < cantidad) return res.status(400).send('No hay stock disponible');
 
+    // Busca pedido pendiente del cliente o crea uno nuevo
     db.query('SELECT * FROM Pedido WHERE id_cliente = ? AND estado = "pendiente"', [clienteId], (err, pedidos) => {
       if (err) return res.status(500).send('Error al buscar pedido');
 
+      // Función para agregar o actualizar detalle del pedido
       const continuar = (id_pedido) => {
         db.query(
           'SELECT * FROM DetallePedido WHERE id_pedido = ? AND id_producto = ?',
@@ -27,6 +30,7 @@ r.post('/', (req, res) => {
             if (err2) return res.status(500).send('Error al consultar detalle');
 
             if (detalles.length) {
+              // Si ya existe el producto en el pedido, actualiza cantidad y subtotal
               const detalle = detalles[0];
               const nuevaCantidad = detalle.cantidad + cantidad;
 
@@ -42,6 +46,7 @@ r.post('/', (req, res) => {
                 (err3) => {
                   if (err3) return res.status(500).send('Error al actualizar detalle');
 
+                  // Actualiza el total del pedido
                   db.query(
                     'UPDATE Pedido SET total = (SELECT SUM(subtotal) FROM DetallePedido WHERE id_pedido = ?) WHERE id_pedido = ?',
                     [id_pedido, id_pedido],
@@ -50,12 +55,14 @@ r.post('/', (req, res) => {
                 }
               );
             } else {
+              // Si no existe, agrega el producto al detalle
               db.query(
                 'INSERT INTO DetallePedido (id_pedido, id_producto, cantidad, subtotal) VALUES (?, ?, ?, ?)',
                 [id_pedido, productoId, cantidad, subtotal],
                 (err4) => {
                   if (err4) return res.status(500).send('Error al agregar producto');
 
+                  // Actualiza el total del pedido
                   db.query(
                     'UPDATE Pedido SET total = (SELECT SUM(subtotal) FROM DetallePedido WHERE id_pedido = ?) WHERE id_pedido = ?',
                     [id_pedido, id_pedido],
@@ -69,8 +76,10 @@ r.post('/', (req, res) => {
       };
 
       if (pedidos.length) {
+        // Si ya hay pedido pendiente, continúa
         continuar(pedidos[0].id_pedido);
       } else {
+        // Si no hay, crea un nuevo pedido pendiente
         db.query(
           'INSERT INTO Pedido (id_cliente, fecha_pedido, estado, total, entregado_por) VALUES (?, ?, ?, ?, NULL)',
           [clienteId, fecha, 'pendiente', subtotal],
@@ -86,7 +95,6 @@ r.post('/', (req, res) => {
     });
   });
 });
-
 
 // 🧾 Obtener productos del carrito
 r.get('/clientes/:id', (req, res) => {
@@ -120,6 +128,7 @@ r.patch('/detalle/:id', (req, res) => {
 
         const id_pedido = r2[0].id_pedido;
 
+        // Actualiza el total del pedido
         db.query(
           'UPDATE Pedido SET total = (SELECT SUM(subtotal) FROM DetallePedido WHERE id_pedido = ?) WHERE id_pedido = ?',
           [id_pedido, id_pedido],
@@ -142,6 +151,7 @@ r.delete('/detalle/:id', (req, res) => {
     db.query('DELETE FROM DetallePedido WHERE id_detalle = ?', [id_detalle], (err2) => {
       if (err2) return res.status(500).send('Error al eliminar producto');
 
+      // Actualiza el total del pedido
       db.query(
         'UPDATE Pedido SET total = (SELECT IFNULL(SUM(subtotal), 0) FROM DetallePedido WHERE id_pedido = ?) WHERE id_pedido = ?',
         [id_pedido, id_pedido],
@@ -156,6 +166,7 @@ r.patch('/finalizar/:clienteId', (req, res) => {
   const clienteId = req.params.clienteId;
   const { metodo_pago } = req.body;
 
+  // Busca pedido pendiente del cliente
   db.query('SELECT * FROM Pedido WHERE id_cliente = ? AND estado = "pendiente"', [clienteId], (err, pedidos) => {
     if (err || !pedidos.length) {
       console.error('❌ Error al obtener pedido pendiente:', err);
@@ -164,11 +175,13 @@ r.patch('/finalizar/:clienteId', (req, res) => {
 
     const pedido = pedidos[0];
 
+    // Calcula el total de la compra
     db.query('SELECT SUM(subtotal) AS total FROM DetallePedido WHERE id_pedido = ?', [pedido.id_pedido], (err2, r2) => {
       if (err2) return res.status(500).send('Error al calcular total');
 
       const total = r2[0].total;
 
+      // Actualiza el pedido a confirmado y registra la venta
       db.query('UPDATE Pedido SET estado = "confirmado", total = ? WHERE id_pedido = ?', [total, pedido.id_pedido], (err3) => {
         if (err3) return res.status(500).send('Error al actualizar pedido');
 
@@ -238,15 +251,18 @@ r.patch('/finalizar/:clienteId', (req, res) => {
     });
   });
 });
+
 // 🧹 Cancelar pedido completo
 r.patch('/cancelar/:clienteId', (req, res) => {
   const clienteId = req.params.clienteId;
 
+  // Busca pedido pendiente del cliente
   db.query('SELECT id_pedido FROM Pedido WHERE id_cliente = ? AND estado = "pendiente"', [clienteId], (err, result) => {
     if (err || !result.length) return res.status(400).send('No hay pedido pendiente');
 
     const id_pedido = result[0].id_pedido;
 
+    // Elimina los detalles y el pedido
     db.query('DELETE FROM DetallePedido WHERE id_pedido = ?', [id_pedido], err2 => {
       if (err2) return res.status(500).send('Error al eliminar productos');
 
@@ -257,6 +273,7 @@ r.patch('/cancelar/:clienteId', (req, res) => {
     });
   });
 });
+
 // 📜 Obtener historial de pedidos de un cliente
 r.get('/historial/:clienteId', (req, res) => {
   const clienteId = req.params.clienteId;
@@ -275,6 +292,5 @@ r.get('/historial/:clienteId', (req, res) => {
     res.json(result);
   });
 });
-
 
 module.exports = r;
