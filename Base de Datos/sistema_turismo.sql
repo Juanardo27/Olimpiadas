@@ -1,4 +1,3 @@
--- phpMyAdmin SQL Dump Completo Modificado por ChatGPT (GPT-5)
 -- Base de datos: `sistema_turismo` con datos de prueba
 -- --------------------------------------------------------
 
