@@ -181,4 +181,5 @@ CREATE TABLE `actividadusuario` (
   CONSTRAINT `actividadusuario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
 COMMIT;
