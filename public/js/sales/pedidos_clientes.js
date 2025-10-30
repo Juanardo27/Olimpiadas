@@ -32,12 +32,12 @@
 
       // Si el pedido está confirmado, muestra botones de entregar/cancelar
       if (p.estado === 'confirmado') {
-        botones.push(`<button onclick="entregar(${p.id_pedido})">✅ Entregar</button>`);
-        botones.push(`<button onclick="cancelar(${p.id_pedido})">❌ Cancelar</button>`);
+        botones.push(`<button class="btn-comprar" onclick="entregar(${p.id_pedido})">Entregar</button>`);
+        botones.push(`<button class="btn-eliminar" onclick="cancelar(${p.id_pedido})">Cancelar</button>`);
       }
 
       // Botón para ver detalle del pedido
-      botones.push(`<button onclick="verDetalle(${p.id_pedido})">📄 Detalle</button>`);
+      botones.push(`<button class="btn-comprar" onclick="verDetalle(${p.id_pedido})">Ver detalle</button>`);
 
       // Agrega la fila a la tabla
       tabla.innerHTML += `

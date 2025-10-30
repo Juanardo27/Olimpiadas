@@ -30,7 +30,7 @@
             <p>${p.descripcion}</p> <!-- Nombre o descripción del producto -->
             <p><strong>$${p.precio}</strong></p> <!-- Precio -->
             <p class="subtitulo">Stock: ${p.stock}</p> <!-- Cantidad disponible -->
-            <button onclick="agregarAlCarrito(${p.id_producto}, ${p.precio})" ${sinStock ? 'disabled' : ''}>
+            <button class="btn-pack" onclick="agregarAlCarrito(${p.id_producto}, ${p.precio})" ${sinStock ? 'disabled' : ''}>
               ${sinStock ? 'Sin stock' : 'Agregar al carrito'}
             </button>
           </div>

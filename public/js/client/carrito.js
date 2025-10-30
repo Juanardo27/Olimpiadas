@@ -56,7 +56,7 @@
             </td>
             <td>$${subtotal.toFixed(2)}</td>
             <td>
-              <button onclick="eliminarProducto(${p.id_detalle})">❌</button>
+              <button class="btn-eliminar" onclick="eliminarProducto(${p.id_detalle})">X</button>
             </td>
           </tr>
         `;

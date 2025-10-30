@@ -36,20 +36,24 @@
     </table>
 
     <!-- Muestra el total del carrito -->
-    <p><strong>Total:</strong> <span id="totalCarrito">$0</span></p>
+    <div class="carrito-resumen">
+      <p class="total" ><strong>Total:</strong> <span id="totalCarrito">$0</span></p>
 
-    <!-- Selección del método de pago -->
-    <h3>Método de pago</h3>
-    <select id="metodoPago">
-      <option value="Tarjeta">Tarjeta</option>
-      <option value="Efectivo">Efectivo</option>
-      <option value="Transferencia">Transferencia</option>
-    </select>
+        <!-- Selección del método de pago -->
+      <div class="pago">
+        <label for="metodoPago"><strong>Método de pago</strong></label>
+        <select id="metodoPago">
+          <option value="Tarjeta">Tarjeta</option>
+          <option value="Efectivo">Efectivo</option>
+          <option value="Transferencia">Transferencia</option>
+        </select>
+      </div>
 
-    <!-- Botones para finalizar o cancelar la compra -->
-    <div style="margin-top: 15px;">
-      <button id="finalizar">🛍️ Finalizar compra</button>
-      <button id="cancelar" style="margin-left: 10px;">❌ Cancelar pedido</button>
+      <!-- Botones para finalizar o cancelar la compra -->
+      <div class="acciones">
+        <button class="btn-comprar" id="finalizar">Finalizar compra</button>
+        <button class="btn-eliminar" id="cancelar" style="margin-left: 10px;">Cancelar pedido</button>
+      </div>
     </div>
   </main>
 

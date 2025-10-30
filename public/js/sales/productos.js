@@ -32,10 +32,10 @@
       // Botones según estado del producto
       const botones = p.activo
         ? `
-          <button onclick='editar(${JSON.stringify(p)})'>✏️</button>
-          <button onclick='eliminar(${p.id_producto})'>❌</button>
+          <button class="btn-editar" onclick='editar(${JSON.stringify(p)})'>Editar</button>
+          <button class="btn-eliminar" onclick='eliminar(${p.id_producto})'>X</button>
         `
-        : `<button onclick='restaurar(${p.id_producto})'>🔁 Restaurar</button>`;
+        : `<button class="btn-comprar" onclick='restaurar(${p.id_producto})'>Restaurar</button>`;
 
       // Agrega la fila a la tabla
       tabla.innerHTML += `
@@ -63,6 +63,7 @@
     form.id_categoria.value = p.id_categoria;
 
     btnGuardar.textContent = 'Guardar Cambios';
+    btnGuardar.style.marginBottom = '20px'
     btnCancelar.style.display = 'inline-block';
   };
 

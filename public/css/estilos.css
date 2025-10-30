@@ -11,6 +11,25 @@ html, body {
 
 main {
   flex: 1;
+  margin: 0 40px;
+}
+
+textarea {
+  width: 340px;      /* ancho fijo */
+  height: 150px;     /* alto fijo */
+  resize: none;      /* desactiva el redimensionado */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+textarea:focus{
+  border-color: #0077aa;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0,119,170,0.4);
 }
 
 /* Estilos generales */
@@ -93,8 +112,6 @@ main {
   gap: 30px;
   justify-content: center;
   padding: 40px 20px;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .paquete-card {
@@ -103,13 +120,15 @@ main {
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .paquete-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
 }
 
 .paquete-card img {
@@ -320,45 +339,126 @@ h3 {
 
 /* Formularios */
 .formulario-container {
-  background-color: white;
+  background-color: #fff;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  max-width: 400px; 
+  width: 100%;        
+  margin: 60px auto;  
+  height: auto;       
+  text-align: center;
 }
 
 .formulario-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #003049;
+  font-size: 1.6rem;
 }
 
 .formulario-container label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   font-weight: bold;
+  color: #333;
+  text-align: left;
 }
 
 .formulario-container input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.formulario-container input:focus {
+  border-color: #0077aa;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0,119,170,0.4);
+}
+
 
 .formulario-container button {
   width: 100%;
-  padding: 10px;
-  background-color: #3498db;
+  padding: 12px;
+  background-color: #0077aa;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
 .formulario-container button:hover {
-  background-color: #2980b9;
+  background-color: #005f80;
+  transform: scale(1.03);
+}
+
+.formulario-container p {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.formulario-container a {
+  color: #0077aa;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.formulario-container a:hover {
+  text-decoration: underline;
+}
+
+.formulario-container select{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formulario-container select:focus{
+  border-color: #0077aa;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,119,170,0.4);
+}
+
+/* Botón exclusivo para paquetes */
+.btn-pack {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #0077aa;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-pack:hover {
+  background-color: #005f80;
+  transform: scale(1.03);
+}
+
+.btn-pack:active {
+  transform: scale(0.97);
+}
+
+/* Estado deshabilitado (sin stock) */
+.btn-pack:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Tablas estilo gestión (productos, pedidos, etc.) */
@@ -430,7 +530,73 @@ h3 {
   background-color: #0056b3;
 }
 
+/* Bloque resumen del carrito */
+.carrito-resumen {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Total */
+.carrito-resumen .total {
+  font-size: 1.3rem;
+  color: #003049;
+  text-align: right;
+}
+
+/* Método de pago */
+.carrito-resumen .pago {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carrito-resumen .pago label {
+  font-weight: bold;
+  color: #333;
+}
+
+.carrito-resumen .pago select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carrito-resumen .pago select:focus {
+  border-color: #0077aa;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0,119,170,0.4);
+}
+
+/* Botones (solo orden, estilos ya los tenés definidos en general) */
+.carrito-resumen .acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
 /* Botones para CRUD */
+.btn-comprar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-comprar:hover{
+  background-color: #005fc4;
+}
+
 .btn-editar {
   background-color: #ffc107;
   color: black;
@@ -474,6 +640,13 @@ h3 {
 }
 
 /* Celulares */
+@media (max-width: 480px) {
+  .formulario-container {
+    padding: 20px;
+    max-width: 90%; /* ocupa casi todo el ancho en mobile */
+  }
+}
+
 @media (max-width: 599px) {
   .paquetes {
     flex-wrap: wrap;
